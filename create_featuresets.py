@@ -60,20 +60,14 @@ def create_feature_sets_labels(pos,neg,test_size=0.1):
     random.shuffle(features)
     
     features = np.array(features)
-    #testing_size = int(test_size*len(features))
-    #train_X = list(features[:,0][:-testing_size])
-    #train_y = list(features[:,1][:-testing_size])
-    #test_X = list(features[:,0][-testing_size:])
-    #test_y = list(features[:,1][-testing_size:])
+    testing_size = int(test_size*len(features))
+    train_X = list(features[:,0][:-testing_size])
+    train_y = list(features[:,1][:-testing_size])
+    test_X = list(features[:,0][-testing_size:])
+    test_y = list(features[:,1][-testing_size:])
     
     
-    from sklearn.model_selection import KFold
-    kfold = KFold(n_splits=700)
-
-    for train_index,test_index in kfold.split(features):
-        print(train_index,test_index)
-    train_X,train_y,test_X,test_y = list(features[:,0][train_index]), list(features[:,1][train_index]),list(features[:,0][test_index]),list(features[:,1][test_index])
-
+    
     
     return train_X,train_y,test_X,test_y
 
